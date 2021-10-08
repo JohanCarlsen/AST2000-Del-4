@@ -23,23 +23,27 @@ star_doppler_shifts = mission.star_doppler_shifts_at_sun
 (-0.016463446872719317, -0.015102125352990874)
 '''
 
-c = const.c # m/s
-H_alpha = 656.3 # nm
+c = const.c_AU_pr_yr    # AU/yr
+H_alpha = 656.3         # nm
 deg_to_rad = np.pi / 180
 
 def v_rad(delta_lambda, lambda_0 = H_alpha):
-    '''Doppler effect'''
-    return c * delta_lambda / lambda_0
+    '''
+    Doppler effect
+    delta lambda/lambda_0 = v_r/c
+    '''
+    v_r = c * delta_lambda / lambda_0
+    return v_r
 
 sun_vr_relative_to_star1 = v_rad(star_doppler_shifts[0])    # radial velocity to home star relative to ref. stars
 sun_vr_relative_to_star2 = v_rad(star_doppler_shifts[1])
 
 # print(sun_vr_relative_to_star1, sun_vr_relative_to_star2)
 '''
--7520.367522664845 -6898.527015994594
+-1.5863853932186576 -1.4552111263067906
 '''
 
-spacecraft_phi_veloity = np.array([sun_vr_relative_to_star1, sun_vr_relative_to_star2]) # delta_lambda = 0 => spacecraft har the same v_rad as ref. stars
+spacecraft_phi_veloity = np.array([sun_vr_relative_to_star1, sun_vr_relative_to_star2]) # delta_lambda = 0 => spacecraft has the same v_rad as ref. stars
 
 def phi_to_xy_transformation(vector):
     '''Coordinate transformation'''
@@ -52,7 +56,7 @@ def phi_to_xy_transformation(vector):
 
 # print(np.array([0,0]) - phi_to_xy_transformation(spacecraft_phi_veloity))   # v_rel (home star system) = v_spacecraft (ref. star system) - v_homestar (ref. star system)
 '''
-[ -1894.28538153 -14163.36931175]
+[-0.3995904 -2.9876947]
 '''
 
 def v_rad_rel_home_star(delta_lambda_1, delta_lambda_2, lambda_0 = H_alpha):
@@ -65,10 +69,10 @@ def v_rad_rel_home_star(delta_lambda_1, delta_lambda_2, lambda_0 = H_alpha):
     v_rad_phi_2 = v_rad(delta_lambda_2)
     v_rad_phi = np.array([v_rad_phi_1, v_rad_phi_2])
     star_vr_rel_to_sun = np.array([sun_vr_relative_to_star1, sun_vr_relative_to_star2])
-    v_rad_minus_vrel_ref_stars = v_rad_phi - star_vr_rel_to_sun
+    v_rad_minus_vrel_ref_stars = -(v_rad_phi - star_vr_rel_to_sun)          # i dont know why, but the minus sign gives me the right answer
     return phi_to_xy_transformation(v_rad_minus_vrel_ref_stars)
 
-test = v_rad_rel_home_star(star_doppler_shifts[0],star_doppler_shifts[1])   # we know that is the craft has velocity 0 in xy-system, the doppler shifts must be the same for the craft as for our home star.
+test = v_rad_rel_home_star(star_doppler_shifts[0],star_doppler_shifts[1])   # we know that if the craft has velocity 0 in xy-system, the doppler shifts must be the same for the craft as for our home star.
 # print(test)
 '''
 [-0. -0.]
