@@ -93,6 +93,14 @@ def spacecraft_position(measured_distances, known_positions):
 delta_lambda_1, delta_lambda_2 = mission.measure_star_doppler_shifts()
 craft_velocity = v_rad_rel_home_star(delta_lambda_1, delta_lambda_2)
 craft_position = spacecraft_position(mission.measure_distances(), system.initial_positions)
+craft_azimuthal_angle = 270 # here i used the program "part4_taskB.py" with img = sky_picture.png, which is the picture generated from the rockets camera
 
 
-# mission.verify_manual_orientation(craft_position, craft_velocity, 0)
+mission.verify_manual_orientation(craft_position, craft_velocity, craft_azimuthal_angle)
+'''
+Pointing angle after launch correctly calculated. Well done!
+Velocity after launch correctly calculated. Well done!
+Position after launch correctly calculated. Well done!
+Your manually inferred orientation was satisfyingly calculated. Well done!
+*** Achievement unlocked: Well-oriented! ***
+'''

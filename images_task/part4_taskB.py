@@ -17,7 +17,7 @@ seed = utils.get_seed('antonabr')
 system = SolarSystem(seed)
 mission = SpaceMission(seed)
 
-img = Image.open('1testpic_taskB.png') # Åpner sample-bildet
+img = Image.open('sky_picture.png') # Åpner sample-bildet
 pixels = np.array(img, dtype=np.uint8) # png til numpy-array
 # print(pixels.dtype)   #uint8
 shape = np.shape(img)   # Shape av sample-bildet
