@@ -35,8 +35,8 @@ def v_rad(delta_lambda, lambda_0 = H_alpha):
     v_r = c * delta_lambda / lambda_0
     return v_r
 
-sun_vr_relative_to_star1 = v_rad(star_doppler_shifts[0])    # radial velocity to home star relative to ref. stars
-sun_vr_relative_to_star2 = v_rad(star_doppler_shifts[1])
+sun_vr_relative_to_star1 = v_rad(-star_doppler_shifts[0])    # radial velocity to home star relative to ref. stars
+sun_vr_relative_to_star2 = v_rad(-star_doppler_shifts[1])
 
 # print(sun_vr_relative_to_star1, sun_vr_relative_to_star2)
 '''
@@ -65,11 +65,11 @@ def v_rad_rel_home_star(delta_lambda_1, delta_lambda_2, lambda_0 = H_alpha):
     calculates the radial velocities in both
     phi-systems. Then transform into xy-system.
     '''
-    v_rad_phi_1 = v_rad(delta_lambda_1)
-    v_rad_phi_2 = v_rad(delta_lambda_2)
+    v_rad_phi_1 = v_rad(-delta_lambda_1)
+    v_rad_phi_2 = v_rad(-delta_lambda_2)
     v_rad_phi = np.array([v_rad_phi_1, v_rad_phi_2])
     star_vr_rel_to_sun = np.array([sun_vr_relative_to_star1, sun_vr_relative_to_star2])
-    v_rad_minus_vrel_ref_stars = -(v_rad_phi - star_vr_rel_to_sun)          # i dont know why, but the minus sign gives me the right answer
+    v_rad_minus_vrel_ref_stars = v_rad_phi - star_vr_rel_to_sun          
     return phi_to_xy_transformation(v_rad_minus_vrel_ref_stars)
 
 test = v_rad_rel_home_star(star_doppler_shifts[0],star_doppler_shifts[1])   # we know that if the craft has velocity 0 in xy-system, the doppler shifts must be the same for the craft as for our home star.
