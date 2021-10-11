@@ -68,7 +68,7 @@ def v_rad_rel_home_star(delta_lambda_1, delta_lambda_2, lambda_0 = H_alpha):
     v_rad_phi_1 = v_rad(-delta_lambda_1)
     v_rad_phi_2 = v_rad(-delta_lambda_2)
     v_rad_phi = np.array([v_rad_phi_1, v_rad_phi_2])
-    star_vr_rel_to_sun = -np.array([sun_vr_relative_to_star1, sun_vr_relative_to_star2])
+    star_vr_rel_to_sun = -np.array([sun_vr_relative_to_star1, sun_vr_relative_to_star2])    # for some reason i need the negative value of this. not quite sure why
     v_rad_minus_vrel_ref_stars = v_rad_phi - star_vr_rel_to_sun
     return phi_to_xy_transformation(v_rad_minus_vrel_ref_stars)
 
