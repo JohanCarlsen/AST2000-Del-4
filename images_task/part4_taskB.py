@@ -67,3 +67,11 @@ def least_squares(image):
 
 phi_new = least_squares(pixels)
 print(phi_new)
+
+# Fra terminal
+"""
+(480, 640, 3)
+<PIL.PngImagePlugin.PngImageFile image mode=RGB size=640x480 at 0x1105B8E0>
+(640, 480)
+112
+"""
