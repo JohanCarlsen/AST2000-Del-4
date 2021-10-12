@@ -91,8 +91,26 @@ def spacecraft_position(measured_distances, known_positions):
 
 # mission.take_picture()
 delta_lambda_1, delta_lambda_2 = mission.measure_star_doppler_shifts()
+
+print('Measured doppler shifts:', mission.measure_star_doppler_shifts())
+'''
+Measured doppler shifts: (0.03702057888274662, 0.015453611179630155)
+'''
+
 craft_velocity = v_rad_rel_home_star(delta_lambda_1, delta_lambda_2)
+
+print('Calculated velocity:', craft_velocity)
+'''
+Calculated velocity: [5.09629203e-16 8.12408017e+00]
+'''
+
 craft_position = spacecraft_position(mission.measure_distances(), system.initial_positions)
+
+print('Calculated position:', craft_position)
+'''
+Calculated position: [1.85891332e+00 1.17687184e-04]
+'''
+
 craft_azimuthal_angle = 270 # here i used the program "part4_taskB.py" with img = sky_picture.png, which is the picture generated from the rockets camera
 
 
