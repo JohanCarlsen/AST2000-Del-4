@@ -17,11 +17,13 @@ seed = utils.get_seed('antonabr')
 system = SolarSystem(seed)
 mission = SpaceMission(seed)
 
-img = Image.open('sky_picture.png') # Åpner sample-bildet
+img = Image.open('1testpic_taskB.png') # Åpner sample-bildet
 pixels = np.array(img, dtype=np.uint8) # png til numpy-array
 # print(pixels.dtype)   #uint8
-shape = np.shape(img)   # Shape av sample-bildet
-# print(shape)
+shape = np.shape(pixels)   # Shape av sample-bildet
+print(shape)
+print(img)      # Printer ut hva slags objekt det er
+print(np.size(img))     # 640 x 480 størrelse
 from_grad_to_rad = np.pi / 180      # Til konvertering mellom grader og radianer
 
 """
@@ -55,7 +57,11 @@ def least_squares(image):
     phi_new = np.where(sq==np.min(sq))[0][0]        # Husk : theta = 90deg.
     # Plotter minste kvadratene
     deg = np.linspace(0, 359, 360)
+    # plt.style.use('seaborn-whitegrid')
     plt.plot(deg, sq, 'royalblue')
+    plt.grid(True, linestyle=':')
+    plt.xlabel(r'$\phi$ [deg]', fontsize=16, weight='bold')
+    plt.ylabel(r'$\Delta$ (least squares)', fontsize=14, weight='bold')
     plt.show()
     return phi_new
 
