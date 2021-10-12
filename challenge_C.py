@@ -61,6 +61,14 @@ print(f'Spacecrafts radial velocities relative to the reference stars when the d
 '''
 Spacecrafts radial velocities relative to the reference stars when the doppler shifts=[0 0]: [0. 0.]
 '''
+craft_rad_vel_rel_to_sun = craft_rad_vel_rel_to_ref_stars - sun_vr_rel_to_ref_stars
+
+print(f'Spacecrafts radial velocities relative to home star when the doppler shifts at reference stars={delta_lambda}:', craft_rad_vel_rel_to_sun)
+'''
+Spacecrafts radial velocities relative to home star when the doppler shifts at reference stars=[0 0]: [-1.58638539 -1.45521113]
+'''
+
+# challenge C.4
 
 def phi_to_xy_transformation(vector):
     '''Coordinate transformation'''
@@ -71,11 +79,11 @@ def phi_to_xy_transformation(vector):
 
     return scaler * np.matmul(transformation_array, vector)
 
-craft_rad_vel_rel_to_sun = craft_rad_vel_rel_to_ref_stars - sun_vr_rel_to_ref_stars
+craft_rad_vel_rel_to_sun_xy_system = phi_to_xy_transformation(craft_rad_vel_rel_to_sun)
 
-print(f'Spacecrafts radial velocities relative to home star when the doppler shifts at reference stars={delta_lambda}:', craft_rad_vel_rel_to_sun)
+print('When we transfom the velocities from phi-system to xy-system, we get:', craft_rad_vel_rel_to_sun_xy_system)
 '''
-Spacecrafts radial velocities relative to home star when the doppler shifts at reference stars=[0 0]: [-1.58638539 -1.45521113]
+When we transfom the velocities from phi-system to xy-system, we get: [0.3995904 2.9876947]
 '''
 
 def v_rad_rel_home_star(delta_lambda_1, delta_lambda_2, lambda_0 = H_alpha):
