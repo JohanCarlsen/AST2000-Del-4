@@ -1,34 +1,3 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
-
-@JohanCarlsen
-JohanCarlsen
-/
-AST2000-Del-4
-Public
-1
-00
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-Settings
-AST2000-Del-4/challenge_C.py /
-@JohanCarlsen
-JohanCarlsen forgot one task, finifhed it now
-Latest commit d20e40f 22 hours ago
- History
- 1 contributor
-105 lines (81 sloc)  3.92 KB
-
 '''
 EGEN KODE
 '''
@@ -44,12 +13,12 @@ mission = SpaceMission(seed)
 star_angles = mission.star_direction_angles
 doppler_shifts_measured_at_sun = mission.star_doppler_shifts_at_sun
 
-print(star_angles)
+# print(star_angles)
 '''
 (320.6272467322133, 201.24860053586167)
 '''
 
-print(doppler_shifts_measured_at_sun)
+# print(doppler_shifts_measured_at_sun)
 '''
 (-0.016463446872719317, -0.015102125352990874)
 '''
@@ -74,9 +43,6 @@ def v_rad(delta_lambda, lambda_0 = H_alpha):
 # challenge C.2
 
 sun_vr_rel_to_ref_stars = np.array([v_rad(doppler_shifts_measured_at_sun[0]), v_rad(doppler_shifts_measured_at_sun[1])])
-sun_vr_relative_to_star1 = v_rad(doppler_shifts_measured_at_sun[0])    # radial velocity to home star relative to ref. stars
-sun_vr_relative_to_star2 = v_rad(doppler_shifts_measured_at_sun[1])
-print(sun_vr_rel_to_ref_stars[0], sun_vr_rel_to_ref_stars[1])
 
 print('Our home stars radial velocities relative to the reference stars:', sun_vr_rel_to_ref_stars)
 '''
