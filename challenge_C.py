@@ -134,16 +134,3 @@ print(f'When the measured doppler shift is the same for our spacecraft as for ou
 '''
 When the measured doppler shift is the same for our spacecraft as for our sun, we expect to get the velocities [0, 0]. We get: [-0. -0.]
 '''
-© 2021 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-Loading complete
