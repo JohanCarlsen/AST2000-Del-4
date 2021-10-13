@@ -106,6 +106,10 @@ Calculated velocity: [5.09629203e-16 8.12408017e+00]
 
 craft_position = spacecraft_position(mission.measure_distances(), system.initial_positions)
 
+# print(mission.measure_distances())
+'''
+[1.17687184e-04 3.13269561e+00 7.13862067e+00 1.49091180e+01 1.98293970e+01 1.20018635e+01 2.60492458e+00 6.50672965e+00 1.85891332e+00]
+'''
 print('Calculated position:', craft_position)
 '''
 Calculated position: [1.85891332e+00 1.17687184e-04]
