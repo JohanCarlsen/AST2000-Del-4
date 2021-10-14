@@ -21,12 +21,12 @@ img0 = Image.open('sample0000.png') # Åpner sample-bildet
 pixels = np.array(img0) # png til numpy-array
 # print(pixels.dtype)   #uint8
 shape = np.shape(img0)   # Shape av sample-bildet
-# print(shape)
+print(shape)
 from_grad_to_rad = np.pi / 180      # Til konvertering mellom grader og radianer
 
 at = 70 * from_grad_to_rad      # FOV a_theta
 ap = 70 * from_grad_to_rad      # FOV a_phi
-phi0 = 0                        # samme i grader og radianer, testbildet 1testpic laget på 43.2 grader
+phi0 = 0                        # 0 samme i grader og radianer, testbildet 1testpic laget på 43.2 grader
 theta0 = 90 * from_grad_to_rad
 # Max/min verdier for xy-grid
 Xmax = 2*np.sin(ap/2) / (1 + np.cos(ap/2))

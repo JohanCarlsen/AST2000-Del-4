@@ -17,7 +17,10 @@ seed = utils.get_seed('antonabr')
 system = SolarSystem(seed)
 mission = SpaceMission(seed)
 
-img = Image.open('1testpic_taskB.png') # Åpner sample-bildet
+system.print_info()
+
+# img = Image.open('1testpic_taskB.png') # Åpner sample-bildet
+img = Image.open('sky_picture.png') # Åpner sample-bildet
 pixels = np.array(img, dtype=np.uint8) # png til numpy-array
 # print(pixels.dtype)   #uint8
 shape = np.shape(pixels)   # Shape av sample-bildet
@@ -40,6 +43,22 @@ for i in range(0, 360):
     pix_360_array[i,:,:,:] = pic
 # print(pix_360_array)
 
+# Noe plotting
+"""
+# Bildet som vi henter inn
+plt.imshow(pixels)
+plt.show()
+# Bildet minste kvadrater summerer over
+angle = 32
+plot = plt.imshow(np.sum((pixels - pix_360_array[angle])**2, axis=2), cmap='nipy_spectral')
+plt.title(r'$\phi_0=$' + f'{angle}' + r'$^\circ$', weight='bold', fontsize=22)
+cbar = plt.colorbar(plot)
+cbar.set_label(r'$\Delta$ (least squares)', fontsize=14, weight='bold')
+plt.xlabel('X')
+plt.ylabel('Y')
+plt.show()
+"""
+
 """
 Bruker minste kvadraters metode for å finne hvilket bilde fra referansebildene
 lastet inn tidligere som passer best med RGB-verdiene til bildet som ble tatt.
@@ -52,16 +71,17 @@ def least_squares(image):
     i gridet og deler på gridstørrelsen for å få fornuftige tall
     (et slags snitt av RGB verdier i hele bildet)
     """
-    sq = np.sum(np.sum(np.sum(image[None,:,:,:] - pix_360_array, axis=3, dtype=np.uint8)**2, axis=1), axis=1) / (640*480)  # Akser 3 og 2 faller til akse 1 etter sum. Akse 0 er alle bildene
+    sq = np.sum(np.sum(np.sum((image[None,:,:,:] - pix_360_array)**2, axis=3, dtype=np.uint8), axis=1), axis=1) / (640*480)  # Akser 3 og 2 faller til akse 1 etter sum. Akse 0 er alle bildene
     # print(sq)
+    print(np.min(sq))
     phi_new = np.where(sq==np.min(sq))[0][0]        # Husk : theta = 90deg.
     # Plotter minste kvadratene
     deg = np.linspace(0, 359, 360)
     # plt.style.use('seaborn-whitegrid')
     plt.plot(deg, sq, 'royalblue')
     plt.grid(True, linestyle=':')
-    plt.xlabel(r'$\phi$ [deg]', fontsize=16, weight='bold')
-    plt.ylabel(r'$\Delta$ (least squares)', fontsize=14, weight='bold')
+    plt.xlabel(r'$\phi$ [deg]', fontsize=14, weight='bold')
+    plt.ylabel(r'$\overline{\Delta}$ (least squares mean)', fontsize=14, weight='bold')
     plt.show()
     return phi_new
 

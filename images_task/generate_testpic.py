@@ -25,7 +25,7 @@ from_grad_to_rad = np.pi / 180      # Til konvertering mellom grader og radianer
 
 at = 70 * from_grad_to_rad      # FOV a_theta
 ap = 70 * from_grad_to_rad      # FOV a_phi
-phi0 = 112.3 * from_grad_to_rad                        # samme i grader og radianer, testbildet 1testpic laget på 43.2 grader
+phi0 = 112.3 * from_grad_to_rad                        # 0 samme i grader og radianer, testbildet 1testpic laget på 43.2 grader
 theta0 = 90 * from_grad_to_rad
 # Max/min verdier for xy-grid
 Xmax = 2*np.sin(ap/2) / (1 + np.cos(ap/2))
